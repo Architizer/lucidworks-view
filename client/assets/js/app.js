@@ -65,5 +65,10 @@
   function run($document, $rootScope, ConfigService) {
     'ngInject';
     $rootScope.title = ConfigService.config.search_app_title;
+
+    // Call $(document).foundation() on page load
+    $rootScope.$on('$viewContentLoaded', function () {
+      $(document).foundation();
+    });
   }
 })();
