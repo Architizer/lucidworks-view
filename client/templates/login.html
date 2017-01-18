@@ -6,22 +6,25 @@ controller: LoginController as vm
 <div class="grid-frame vertical">
 
     <!-- Top Bar -->
-    <nav class="primary title-bar">
-      <span class="center">
-        <span class="show-for-small-only">
-          <a class="adk title">
-            <h2 class="adk"><span class="architizer-glyph">B</span></h2>
-          </a>
-        </span>
-      </span>
-      <ul class="left menu-bar primary condense">
-        <li class="show-for-medium">
-          <a class="title">
-            <h2 class="adk"><span class="architizer-glyph">B</span></h2>
-          </a>
-        </li>
-      </ul>
-    </nav>
+    <div class="adk top-bar">
+      <div class="top-bar-left">
+        <ul class="menu">
+          <!-- Facets menu hamburger button for mobile -->
+          <li ng-show="hc.showFacets" class="show-for-small-only">
+            <a zf-toggle="sidebar">
+              <img
+                zf-iconic=""
+                icon="menu"
+                data-direction="top"
+                size="small"
+                class="iconic-color">
+            </a>
+          </li>
+          <!-- Architizer Logo -->
+          <li><a class="architizer-glyph hide-for-small-only" ui-sref="login">B</a></li>
+        </ul>
+      </div>
+    </div>
 
     <!-- Main Content Frame -->
     <div class="grid-container">
