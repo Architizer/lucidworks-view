@@ -15,8 +15,13 @@ controller: HomeController as hc
           <search-box query="hc.searchQuery" class="search-box-outer"></search-box>
           <!-- Query Profile Selector -->
           <select ng-model="hc.queryProfile">
+            <option value="default">Default Query Profile</option>
             <option value="brand_results">Brands</option>
             <option value="product_response_results">Product Responses</option>
+          </select>
+          <!-- Sort Selector -->
+          <select ng-model="hc.sort">
+            <option ng-repeat="sortOption in hc.sortOptions" value="{{ sortOption.value }}">{{ sortOption.label }}</option>
           </select>
           <!-- Search Button -->
           <a href="#" class="success button" ng-click="hc.search()"><img

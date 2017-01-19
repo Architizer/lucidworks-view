@@ -44,12 +44,13 @@
         // updateStatus();
         checkResultsType(data);
         updateStatus();
-        // Initializing sorting
-        sorting = hc.sorting;
-        sorting.switchSort = switchSort;
-        createSortList();
 
       });
+
+      // Initializing sorting (outside of the observable so switchSort doesn't re-fire the observable callbacks)
+      sorting = hc.sorting;
+      sorting.switchSort = switchSort;
+      createSortList();
 
       // Force set the query object to change one digest cycle later
       // than the digest cycle of the initial load-rendering
@@ -126,6 +127,10 @@
         fq: []
       };
 
+      // Reset Sort
+      sorting.selectedSort = sorting.sortOptions[0];
+      switchSort();
+
       URLService.setQuery(query);
     }
 
@@ -145,7 +150,11 @@
     /**
      * Switches sort parameter in the page
      */
-    function switchSort(sort){
+    function switchSort () {
+
+      // Parse JSON string from ng-change
+      var sort = angular.fromJson(hc.sorting.selectedSort);
+
       sorting.selectedSort = sort;
       var query = QueryService.getQueryObject();
       switch(sort.type) {
